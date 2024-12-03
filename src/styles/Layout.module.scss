@@ -1,0 +1,79 @@
+.container {
+    display: grid;
+    grid-template-rows: 1fr 10fr;
+    width: 100vw;
+    height: 100vh;
+    nav {
+        display: flex;
+        justify-content: space-between;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); // Add shadow here
+        padding: 0 20px;
+        img {
+            height: 50px;
+        }
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            span {
+                min-width: 250px;
+                font-style: italic;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                color: #007AFF;
+                font-weight: bold;
+                > div:first-child {
+                    font-size: 1.5em;
+                }
+            }
+            a {
+                height: 100%;
+                width: 150px;
+                font-size: 1.2em;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                color: rgba(128, 128, 128, 0.700);
+                font-weight: bold;
+                &:hover {
+                    color: black;
+                    background-color: rgba(128, 128, 128, 0.192);
+                }
+                &.active {
+                    color: black;
+                }
+            }
+        }
+        .right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            button {
+                height: 30%;
+                width: 50px;
+                cursor: pointer;
+                font-weight: bold;
+                border: none;
+                border-radius: 5px;
+                &.en {
+                    background-color: #007AFF;
+                    color: white;
+                    &:hover {
+                        background-color: #0056b3;
+                    }
+                }
+                &.vi {
+                    background-color: red;
+                    color: #FFFF00;
+                    font-weight: 900;
+                    &:hover {
+                        background-color: rgb(109, 0, 0);
+                    }
+                }
+            }
+        }
+    }
+}

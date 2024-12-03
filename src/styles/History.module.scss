@@ -1,0 +1,84 @@
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom right, white, #007AFF);
+    .info {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        p {
+            color: red;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        ul {
+            padding: 2% 2%;
+            background-color: white;
+            position: relative;
+            max-height: 50vh;
+            overflow-y: auto;
+            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            li {
+                list-style: none;
+                display: grid;
+                grid-template-columns: 1fr 15fr 2fr;
+                .decoration {
+                    background-color: #007bff68;
+                    border-radius: 20px 0 0 20px;
+                    border-top: 1px solid black;
+                    border-bottom: 1px solid black;
+                    border-left: 1px solid black;
+                }
+                .history {
+                    padding: 2% 5%;
+                    border-top: 1px solid black;
+                    border-bottom: 1px solid black;
+                    .ids {
+                        display: flex;
+                        justify-content: space-between;
+                        span span {
+                            font-style: italic;
+                            color:#007AFF;
+                        }
+                        > span {
+                            font-style: normal;
+                            color: black;
+                        }
+                    }
+                    div span {
+                        font-style: italic;
+                        color: #007AFF;
+                    }
+                }
+                .button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 0 20px 20px 0;
+                    border-top: 1px solid black;
+                    border-bottom: 1px solid black;
+                    border-right: 1px solid black;
+                    button {
+                        background-color: red;
+                        color: white;
+                        padding: 7% 15%;
+                        border: none;
+                        border-radius: 5px;
+                        font-size: 1em;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: #ff0000a1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
