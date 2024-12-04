@@ -9,8 +9,11 @@ import { SpecificationsProvider } from "../context/SpecificationsContext"
 import { useNavigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
 import styles from '../styles/Print.module.scss'
+import { printJobs } from "../utils/sample"
+import useSpecs from "../hooks/useSpecs"
 
 export default function Print() {
+    const {specifications} = useSpecs()
     const navigate = useNavigate()
     const {user, loading} = useAuth()
     const [step, setStep] = useState(1)
@@ -26,7 +29,25 @@ export default function Print() {
         navigate('/homepage')
     }
     const handleNext = () => {
+        // export type PrintJob = {
+        //     id: string
+        //     printerId: string
+        //     copies: number
+        //     location: string
+        //     confirmTime: Date
+        //     status: string
+        //     studentId: string
+        // }
         if (step === 5) {
+            printJobs.push({
+                id: (printJobs.length + 1).toString(),
+                printerId: specifications.printerId,
+                copies: specifications.numberOfCopies,
+                location: specifications.location,
+                confirmTime: specifications.confirmationTime!,
+                status: "Pending",
+                studentId: user!.id
+            })
             navigate('/homepage')
             return
         }

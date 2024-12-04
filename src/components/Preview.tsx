@@ -5,11 +5,6 @@ import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import '../setUpPDF.ts';
 
-const containerStyle:React.CSSProperties  = {
-  width: "100%",
-  height: "100%",
-  overflow: "hidden",
-}
 const buttonStyle:React.CSSProperties = {
   padding: '5px 10px',
   marginRight: '5px',
@@ -75,12 +70,17 @@ export default function Preview({ file, selectedPages }: { file: File, selectedP
     if (!containerRef.current) return { width: 0, height: 0 };
 
     const containerWidth = containerRef.current.clientWidth;
-    const containerHeight = containerRef.current.clientHeight;
     const { width, height } = pageDimensions;
-
-    const scale = Math.min(containerWidth / width, containerHeight / height);
-
-    return { width: width * scale, height: height * scale };
+    
+    if (width > height) { 
+      const scale = containerWidth / width;
+      return { width: width * scale, height: height * scale };
+    }
+   
+    const scale = 500 / height;
+    containerRef.current.style.width = `${width * scale}px`;
+    containerRef.current.style.height = `500px`;
+    return { width: width*scale, height: 500 };
   }, [pageDimensions]);
 
   useEffect(() => {
@@ -96,7 +96,7 @@ export default function Preview({ file, selectedPages }: { file: File, selectedP
       setContainerSize({ width, height });
     };
 
-    handleResize(); // Initial call to set the size
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -104,7 +104,7 @@ export default function Preview({ file, selectedPages }: { file: File, selectedP
   }, [getPageSize]);
 
   return (
-    <div style={containerStyle} ref={containerRef}>
+    <div ref={containerRef}>
       <Document
         file={file}
         onLoadSuccess={onDocumentLoadSuccess}
