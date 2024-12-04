@@ -7,7 +7,6 @@
         display: flex;
         justify-content: space-between;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); // Add shadow here
-        padding: 0 20px;
         img {
             height: 50px;
         }
@@ -15,8 +14,9 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            padding-left: 20px;
             span {
-                min-width: 250px;
+                min-width: 200px;
                 font-style: italic;
                 display: flex;
                 align-items: center;
@@ -50,7 +50,9 @@
         .right {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            position: relative;
+            padding-right: 20px;
             button {
                 height: 30%;
                 width: 50px;
@@ -74,6 +76,40 @@
                     }
                 }
             }
+            svg {
+                height: 25px;
+                width: 25px;
+                cursor: pointer;
+                &:hover {
+                    color: rgb(95, 95, 95);
+                }
+            }
+            .popup {
+                position: absolute;
+                top: 100%;
+                right:0;
+                width: 100%;
+                border: 1px solid black;
+                .popupContent {
+                    display: flex;
+                    flex-direction: column;
+                    background-color: white;
+                    justify-content: center;
+                    align-items: center;
+                    button {
+                        width: 100%;
+                        padding: 5% 0;
+                        border: none;
+                        background-color: white;
+                        color: black;
+                        font-weight: bold;
+                        &:hover {
+                            background-color: #f1f1f1;
+                    }
+                }
+                }
+            }
+
         }
     }
 }

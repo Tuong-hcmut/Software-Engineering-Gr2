@@ -12,7 +12,7 @@ export const generalNotifications = [
         vi: "Cập nhật số trang của mỗi sinh viên. Vui lòng kiểm tra tài khoản của bạn để tránh bất kỳ bất tiện nào."
     }
 ]
-type PrintJob = {
+export type PrintJob = {
     id: string
     printerId: string
     copies: number
@@ -68,3 +68,40 @@ export const printJobs: PrintJob[] = [
         studentId: "1"
     }
 ];
+
+export const paperSizes = ["A4", "A3", "A5"];
+
+export type Printer = {id: string, location: string, status: string, type: string}
+
+export const printers = [
+    {
+        id: "printer-001",
+        location: "Library",
+        status: "working",
+        type: "laserPrinter"
+    },
+    {
+        id: "printer-002",
+        location: "Computer Lab",
+        status: "stoppedWorking",
+        type: "laserPrinter"
+    },
+    {
+        id: "printer-003",
+        location: "Office",
+        status: "busy",
+        type: "laserPrinter"
+    },
+    {
+        id: "printer-004",
+        location: "Dormitory",
+        status: "working",
+        type: "laserPrinter"
+    },
+    {
+        id: "printer-005",
+        location: "Library",
+        status: "working",
+        type: "laserPrinter"
+    }
+]

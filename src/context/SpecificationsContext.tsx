@@ -2,11 +2,17 @@ import React, { createContext, useState, ReactNode } from 'react';
 
 type specifications = {
     paperSize: string;
-    selectedPages: number[];
+    selectedPages: string;
     numberOfCopies: number;
     isDoubleSided: boolean;
     isColor: boolean;
     Orientation: string;
+    file: File | null;
+    title: string;
+    printerId: string;
+    location: string;
+    confirmationTime: Date;
+    requestTime: Date;
 }
 
 interface SpecificationsContextType {
@@ -18,12 +24,18 @@ export const SpecificationsContext = createContext<SpecificationsContextType | u
 
 export const SpecificationsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [specifications, setSpecifications] = useState<specifications>({
-        paperSize: "A4",
-        selectedPages: [],
+        title: "",
+        paperSize: "",
+        selectedPages: "",
         numberOfCopies: 1,
         isDoubleSided: false,
         isColor: false,
-        Orientation: "Portrait"
+        Orientation: "Portrait",
+        file: null,
+        printerId: "",
+        location: "",
+        confirmationTime: new Date(),
+        requestTime: new Date()
     });
 
     return (
