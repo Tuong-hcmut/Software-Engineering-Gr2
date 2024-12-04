@@ -34,3 +34,10 @@
 ## Class Diagram
 ### Link:
 > https://drive.google.com/file/d/1AnjCmB7mXnO3T7U94KAU4QfWnVn3t71l/view?usp=sharing
+
+## Use-case Diagram:
+### Whole System:
+> https://drive.google.com/file/d/1ONYwlkP7iuIz-C9CyJ2xtamovxo13q8o/view?usp=sharing
+
+### Print Document:
+> https://drive.google.com/file/d/1CAPmRaSEI_gBCTEpJLTepxB7XdafTYGb/view?usp=sharing
