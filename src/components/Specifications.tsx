@@ -7,9 +7,6 @@ import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import styles from '../styles/Print.module.scss';
 
-const parseSelectedPages = (pages: string) => {
-  // Your parsing logic here
-}
 export default function Specifications({ onMissing }: { onMissing: (error: string[]) => void }) {
   const { specifications, setSpecifications } = useSpecs();
   const { t } = useTranslation();
@@ -35,7 +32,7 @@ export default function Specifications({ onMissing }: { onMissing: (error: strin
 
   return (
     <div className={styles.specs}>
-      {specifications.file ? <div style={{display: "flex", justifyContent:"center"}}><Preview file={specifications.file} selectedPages={specifications.selectedPages} /></div> : <div style={{backgroundColor: "white"}}></div>}
+      {specifications.file && specifications.selectedPages !== "" ? <div className={styles.preview} style={{display: "flex", justifyContent:"center"}}><Preview file={specifications.file} selectedPages={specifications.selectedPages} isColored={specifications.isColor} /></div> : <div style={{backgroundColor: "white", padding: "2%"}}>{t('pleaseSelect')}</div>}
       <div className={styles.field}>
         <span>
           <label htmlFor="paperSize">{t('paperSize')}</label>

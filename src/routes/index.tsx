@@ -9,6 +9,7 @@ import LoginPage from "../pages/Login";
 import HomePage from "../pages/Home";
 import HistoryPage from "../pages/History";
 import PrintPage from "../pages/Print";
+import { SpecificationsProvider } from "../context/SpecificationsContext"
 import { Navigate } from "react-router";
   function MyRouter() {
     return (
@@ -18,7 +19,7 @@ import { Navigate } from "react-router";
             <Route path="login" element={<Layout><LoginPage /></Layout>} />
             <Route path="homepage" element={<Layout><HomePage/></Layout>} />
             <Route path="history" element={<Layout><HistoryPage/></Layout>} />
-            <Route path="print" element={<Layout><PrintPage/></Layout>} />
+            <Route path="print" element={<Layout><SpecificationsProvider><PrintPage/></SpecificationsProvider></Layout>} />
 
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

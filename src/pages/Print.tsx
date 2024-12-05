@@ -5,7 +5,6 @@ import ChoosePrinter from "../components/ChoosePrinter"
 import Confirmation from "../components/Confirmation"
 import Success from "../components/Success"
 import { useTranslation } from "react-i18next"
-import { SpecificationsProvider } from "../context/SpecificationsContext"
 import { useNavigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
 import styles from '../styles/Print.module.scss'
@@ -29,15 +28,6 @@ export default function Print() {
         navigate('/homepage')
     }
     const handleNext = () => {
-        // export type PrintJob = {
-        //     id: string
-        //     printerId: string
-        //     copies: number
-        //     location: string
-        //     confirmTime: Date
-        //     status: string
-        //     studentId: string
-        // }
         if (step === 5) {
             printJobs.push({
                 id: (printJobs.length + 1).toString(),
@@ -77,13 +67,11 @@ export default function Print() {
             <div className={styles.navigate}>{t('print')} / {titles[step-1]}</div>
             <button className={styles.back} onClick={handleBack}>{t('back')}</button>
             {error.length > 0 && <div className={styles.error}>{parseErrors(error)}</div>}
-            <SpecificationsProvider>
                 {step === 1 && <Upload/>}
                 {step === 2 && <Specifications onMissing={handleMissing}/>}
                 {step === 3 && <ChoosePrinter/>}
                 {step === 4 && <Confirmation onMissing={handleMissing}/>}
                 {step === 5 && <Success/>}
-            </SpecificationsProvider>
             <button className={styles.next} onClick={handleNext}>{(() => {
                 if (step === 4) {
                     return t('confirm')

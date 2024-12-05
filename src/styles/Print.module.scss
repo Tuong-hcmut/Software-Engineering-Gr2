@@ -88,13 +88,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     background-color: #d9d9d983;
+    padding: 50px;
     padding: 5%;
     .field {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-row: 1fr 1fr 1fr;
         gap: 20px;
-        padding: 5%;
         > span {
             display: flex;
             align-items: center;

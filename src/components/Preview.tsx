@@ -47,7 +47,7 @@ const parseSelectedPages = (selectedPages: string, numPages: number): number[] =
 
   return pages;
 };
-export default function Preview({ file, selectedPages }: { file: File, selectedPages: string }) {
+export default function Preview({ file, selectedPages, isColored }: { file: File, selectedPages: string, isColored: boolean }) {
   const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumbers, setPageNumbers] = useState<number[]>([]);
   const [pageIndex, setPageIndex] = useState(0);
@@ -76,11 +76,11 @@ export default function Preview({ file, selectedPages }: { file: File, selectedP
       const scale = containerWidth / width;
       return { width: width * scale, height: height * scale };
     }
-   
-    const scale = 500 / height;
+   const defaultHeight = 400;
+    const scale = defaultHeight / height;
     containerRef.current.style.width = `${width * scale}px`;
-    containerRef.current.style.height = `500px`;
-    return { width: width*scale, height: 500 };
+    containerRef.current.style.height = `${defaultHeight}px`;
+    return { width: width*scale, height: defaultHeight };
   }, [pageDimensions]);
 
   useEffect(() => {
@@ -104,7 +104,7 @@ export default function Preview({ file, selectedPages }: { file: File, selectedP
   }, [getPageSize]);
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={isColored ? {} : {filter: "grayscale(100%)"}}>
       <Document
         file={file}
         onLoadSuccess={onDocumentLoadSuccess}
