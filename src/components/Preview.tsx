@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import '../setUpPDF.ts';
+import useSpecs from '../hooks/useSpecs.ts';
 
 const buttonStyle:React.CSSProperties = {
   padding: '5px 10px',
@@ -47,7 +48,8 @@ const parseSelectedPages = (selectedPages: string, numPages: number): number[] =
 
   return pages;
 };
-export default function Preview({ file, selectedPages, isColored }: { file: File, selectedPages: string, isColored: boolean }) {
+export default function Preview() {
+  const {specifications, setSpecifications} = useSpecs();
   const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumbers, setPageNumbers] = useState<number[]>([]);
   const [pageIndex, setPageIndex] = useState(0);
@@ -58,7 +60,7 @@ export default function Preview({ file, selectedPages, isColored }: { file: File
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
-    setPageNumbers(parseSelectedPages(selectedPages, numPages));
+    setPageNumbers(parseSelectedPages(specifications.selectedPages, numPages));
   };
 
   const onPageLoadSuccess = (page: any) => {
@@ -85,10 +87,11 @@ export default function Preview({ file, selectedPages, isColored }: { file: File
 
   useEffect(() => {
     if (numPages !== null) {
-      setPageNumbers(parseSelectedPages(selectedPages, numPages));
+      setPageNumbers(parseSelectedPages(specifications.selectedPages, numPages));
       setPageIndex(0);
+      setSpecifications({ ...specifications, numPages });
     }
-  }, [selectedPages, numPages]);
+  }, [specifications.selectedPages, numPages]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -104,9 +107,9 @@ export default function Preview({ file, selectedPages, isColored }: { file: File
   }, [getPageSize]);
 
   return (
-    <div ref={containerRef} style={isColored ? {} : {filter: "grayscale(100%)"}}>
+    <div ref={containerRef} style={specifications.isColor? {} : {filter: "grayscale(100%)"}}>
       <Document
-        file={file}
+        file={specifications.file}
         onLoadSuccess={onDocumentLoadSuccess}
       >
         {pageNumbers.length > 0 && (

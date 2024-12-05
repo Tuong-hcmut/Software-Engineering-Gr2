@@ -109,6 +109,15 @@
                 }
                 }
             }
+            .balance {
+                font-style: italic;
+                >span {
+                    font-size: 1.2em;
+                    font-weight: bold;
+                    color: red;
+                    margin-right: 5px;
+                }
+            }
 
         }
     }

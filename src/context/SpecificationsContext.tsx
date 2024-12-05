@@ -12,7 +12,8 @@ type specifications = {
     printerId: string;
     location: string;
     confirmationTime: Date;
-    requestTime: Date;
+    requestTime: Date | null;
+    numPages: number;
 }
 
 interface SpecificationsContextType {
@@ -35,7 +36,8 @@ export const SpecificationsProvider: React.FC<{ children: ReactNode }> = ({ chil
         printerId: "",
         location: "",
         confirmationTime: new Date(),
-        requestTime: new Date()
+        requestTime: new Date(),
+        numPages: 0
     });
 
     return (

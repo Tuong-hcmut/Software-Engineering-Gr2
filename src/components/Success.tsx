@@ -23,7 +23,7 @@ export default function Confirmation() {
         </span>
         <span>
           <span>{t('requestTime')}:</span>
-          <span>{specifications.requestTime.toLocaleString()}</span>
+          <span>{specifications.requestTime!.toLocaleString()}</span>
         </span>
         <span>
           <span>{t('printerID')}:</span>

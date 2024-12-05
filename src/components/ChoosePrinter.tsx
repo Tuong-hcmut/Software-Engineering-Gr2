@@ -16,14 +16,13 @@ export default function ChoosePrinter() {
       <div>
         <ul>
           {printers.map(printer => (
-            <li key={printer.id}>
+            <li key={printer.id} onClick={() => handleSelect(printer)}>
             <span className={styles.decoration}></span>
             <span className={styles.history}>
                 <div><span>{t('printID')}:</span> {printer.id}</div>
                 <div><span>{t('location')}:</span> {printer.location}</div>
                 <div><span>{t('status')}:</span> {t(printer.status)}</div>
                 <div><span>{t('type')}:</span> {t(printer.type)}</div>
-                
             </span>
             <span className={styles.button}>
                 <input type="checkbox" checked={selectedPrinter === printer.id} onChange={() => handleSelect(printer)}/>

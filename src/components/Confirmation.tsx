@@ -26,8 +26,8 @@ export default function Confirmation({onMissing}: {onMissing: (error: string[]) 
     if (errors.length > 0) {
       onMissing(errors)
     }
-    setSpecifications({...specifications, requestTime: new Date()})
-  }, [onMissing]);
+    if (!specifications.requestTime) setSpecifications({...specifications, requestTime: new Date()})
+  }, []);
   return (
     <div className={styles.confirm}>
       <span>
@@ -40,7 +40,7 @@ export default function Confirmation({onMissing}: {onMissing: (error: string[]) 
       </span>
       <span>
         <span>{t('requestTime')}:</span>
-        <span>{specifications.requestTime.toLocaleString()}</span>
+        <span>{specifications.requestTime!.toLocaleString()}</span>
       </span>
       <span>
         <span>{t('printerID')}:</span>

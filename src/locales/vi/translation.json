@@ -72,5 +72,9 @@
     "previous": "Trước",
     "Next": "Sau",
     "of": "trên",
-    "pleaseSelect": "Vui lòng chọn trang để xem trước"
+    "pleaseSelect": "Vui lòng chọn trang để xem trước",
+    "balance": "Số dư",
+    "insufficientBalance": "Số dư không đủ",
+    "newBalance": "Số dư mới",
+    "totalPages": "Tổng số trang"
 }

@@ -14,7 +14,7 @@ import useSpecs from "../hooks/useSpecs"
 export default function Print() {
     const {specifications} = useSpecs()
     const navigate = useNavigate()
-    const {user, loading} = useAuth()
+    const {user, loading, balance, setBalance} = useAuth()
     const [step, setStep] = useState(1)
     const { t } = useTranslation()
     const titles = [t('Upload'), t('specifications'), t('choosePrinter'), t('confirmation'), (t("confirmation"))]
@@ -28,6 +28,33 @@ export default function Print() {
         navigate('/homepage')
     }
     const handleNext = () => {
+        if (step === 3) {
+            let pages = specifications.numPages*specifications.numberOfCopies*(specifications.isDoubleSided ? 1 : 2);
+            if (specifications.printerId === "A3") {
+                pages = pages * 2
+            }
+            if (specifications.printerId === "A5") {
+                pages = pages%2 === 0 ? pages/2 : (pages+1)/2
+            }
+            if (pages > balance) {
+                setError(['insufficientBalance'])
+                return
+            }
+            setError(["totalPages", pages.toString(), "newBalance", (balance - pages).toString()])
+            setStep(step + 1)
+            return;
+        }
+        if (step === 4) {
+            let pages = specifications.numPages*specifications.numberOfCopies*(specifications.isDoubleSided ? 1 : 2);
+            if (specifications.printerId === "A3") {
+                pages = pages * 2
+            }
+            if (specifications.printerId === "A5") {
+                pages = pages%2 === 0 ? pages/2 : (pages+1)/2
+            }
+            setBalance(balance - pages)
+            localStorage.setItem('balance', (balance-pages).toString())
+        }
         if (step === 5) {
             printJobs.push({
                 id: (printJobs.length + 1).toString(),
@@ -52,6 +79,10 @@ export default function Print() {
         if (errors.length === 1) {
             return t(errors[0])
         }
+        if (errors[0] === "totalPages") {
+            console.log(errors)
+            return `${t(errors[0])}: ${errors[1]}, ${t(errors[2])}: ${errors[3]}`
+        }
         const temp = [...errors];
         const lastError = t(temp.pop()!).toLowerCase();
         const joinedErrors = temp.map((e, index) => index === 0 ? t(e) : t(e).toLowerCase()).join(', ');
@@ -65,7 +96,7 @@ export default function Print() {
     return (
         <div className={styles.container}>
             <div className={styles.navigate}>{t('print')} / {titles[step-1]}</div>
-            <button className={styles.back} onClick={handleBack}>{t('back')}</button>
+            {step < 5 && <button className={styles.back} onClick={handleBack}>{t('back')}</button>}
             {error.length > 0 && <div className={styles.error}>{parseErrors(error)}</div>}
                 {step === 1 && <Upload/>}
                 {step === 2 && <Specifications onMissing={handleMissing}/>}

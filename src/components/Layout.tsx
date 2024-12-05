@@ -8,7 +8,7 @@ import {faBell, faUserCircle} from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles/Layout.module.scss'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-    const { user } = useAuth()
+    const { user, balance } = useAuth()
     const { t, i18n } = useTranslation()
     const [language, setLanguage] = useState(i18n.language.split('-')[0]);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -42,8 +42,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     <FontAwesomeIcon icon={faBell} />
                     <FontAwesomeIcon icon={faUserCircle} onClick={() => {console.log('clicked');setIsPopupOpen(true)}} />
                     {user && isPopupOpen && <SettingsPopUp onClose={() => setIsPopupOpen(false)} />}
+                    {user && user.role === "user" && <div className={styles.balance}><span>{t("balance")}:</span> {balance}</div>}
                 </div>
-
             </nav>
             <main>{children}</main>
         </div>

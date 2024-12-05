@@ -69,5 +69,9 @@
     "previous": "Previous",
     "Next": "Next",
     "of": "of",
-    "pleaseSelect": "Please select pages for preview"
+    "pleaseSelect": "Please select pages for preview",
+    "balance": "Balance",
+    "insufficientBalance": "Insufficient balance",
+    "newBalance": "New balance",
+    "totalPages": "Total pages"
 }

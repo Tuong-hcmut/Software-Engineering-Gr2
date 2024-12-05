@@ -93,8 +93,8 @@
     .field {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-row: 1fr 1fr 1fr;
         gap: 20px;
+        padding: 50px;
         > span {
             display: flex;
             align-items: center;
@@ -136,6 +136,7 @@
             list-style: none;
             display: grid;
             grid-template-columns: 1fr 15fr 2fr;
+            cursor: pointer;
             .decoration {
                 background-color: #007bff68;
                 border-radius: 20px 0 0 20px;
@@ -161,6 +162,23 @@
                 input {
                     transform: scale(2);
                     transform-origin: center;
+                }
+            }
+            &:hover {
+                .decoration {
+                    border-top: 3px solid black;
+                    border-bottom: 3px solid black;
+                    border-left: 3px solid black;
+                                
+                }
+                .history {
+                    border-top: 3px solid black;
+                    border-bottom: 3px solid black;
+                }
+                .button {
+                    border-top: 3px solid black;
+                    border-bottom: 3px solid black;
+                    border-right: 3px solid black;   
                 }
             }
         }

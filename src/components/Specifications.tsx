@@ -32,7 +32,7 @@ export default function Specifications({ onMissing }: { onMissing: (error: strin
 
   return (
     <div className={styles.specs}>
-      {specifications.file && specifications.selectedPages !== "" ? <div className={styles.preview} style={{display: "flex", justifyContent:"center"}}><Preview file={specifications.file} selectedPages={specifications.selectedPages} isColored={specifications.isColor} /></div> : <div style={{backgroundColor: "white", padding: "2%"}}>{t('pleaseSelect')}</div>}
+      {specifications.file && specifications.selectedPages !== "" ? <div className={styles.preview} style={{display: "flex", justifyContent:"center"}}><Preview /></div> : <div style={{backgroundColor: "white", padding: "2%"}}>{t('pleaseSelect')}</div>}
       <div className={styles.field}>
         <span>
           <label htmlFor="paperSize">{t('paperSize')}</label>
