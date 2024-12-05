@@ -1,8 +1,9 @@
 import React, { createContext, useState, ReactNode, useEffect } from 'react';
+import { students, SPSO } from '../utils/sample';
 
 interface AuthContextType {
   user: { role: string, id: string} | null;
-  login: (role: string, id: string) => void;
+  login: (username: string, password: string, role: string) => string;
   logout: () => void;
   loading: boolean;
   balance: number;
@@ -28,14 +29,25 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
     setLoading(false);
   }, []);
-  const login = (role: string, id: string) => {
-    const userData:{ role: string, id: string} = { id, role };
-    setBalance(1000);
+  const login = (username: string, password: string, role: string) => {
+    if (role === "admin" && username === SPSO.username && password === SPSO.password) {
+      const userData = { role: "admin", id: "admin" };
+      setUser(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
+      return "";
+    }
+    const student = students.find((student) => student.username === username && student.password === password);
+    if (!student) {
+      return "invalidCredentials";
+    }
+    const userData = { role: "user", id: student.id };
+    setBalance(student.balance);
     setUser(userData);
     localStorage.setItem('user', JSON.stringify(userData));
     if (role === "user") {
       localStorage.setItem('balance', '1000');
     }
+    return "";
   };
 
   const logout = () => {

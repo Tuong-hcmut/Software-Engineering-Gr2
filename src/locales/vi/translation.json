@@ -77,5 +77,7 @@
     "insufficientBalance": "Số dư không đủ",
     "newBalance": "Số dư mới",
     "totalPages": "Tổng số trang",
-    "studentID": "Mã sinh viên"
+    "studentID": "Mã sinh viên",
+    "emptyField": "Không được để trống",
+    "invalidCredentials": "Tài khoản hoặc mật khẩu không đúng"
 }

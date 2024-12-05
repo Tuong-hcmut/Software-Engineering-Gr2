@@ -74,5 +74,7 @@
     "insufficientBalance": "Insufficient balance",
     "newBalance": "New balance",
     "totalPages": "Total pages",
-    "studentID": "Student ID"
+    "studentID": "Student ID",
+    "emptyField": "Empty fields",
+    "invalidCredentials": "Invalid username or password"
 }

@@ -105,3 +105,22 @@ export const printers = [
         type: "laserPrinter"
     }
 ]
+
+type Student = {username: string, password: string, balance: number, id: string}
+
+export const students: Student[] = [
+    {
+        username: "student1",
+        password: "123456",
+        balance: 1000,
+        id: "1"
+    },
+    {
+        username: "student2",
+        password: "123456",
+        balance: 5000,
+        id: "2"
+    }
+]
+
+export const SPSO = {username: "admin", password: "123456"}
