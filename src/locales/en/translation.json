@@ -73,5 +73,6 @@
     "balance": "Balance",
     "insufficientBalance": "Insufficient balance",
     "newBalance": "New balance",
-    "totalPages": "Total pages"
+    "totalPages": "Total pages",
+    "studentID": "Student ID"
 }

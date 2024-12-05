@@ -15,7 +15,10 @@ export default function History() {
             return
         }
         if (!loading && user) {
-            setDisplayJobs(user.role === "user" ? printJobs.filter(job => job.studentId === user.id) : printJobs)
+            const now = new Date()
+            const twentyDaysAgo = new Date(now.setDate(now.getDate() - 20));
+
+            setDisplayJobs((user.role === "user" ? printJobs.filter(job => job.studentId === user.id) : printJobs.filter(job => job.confirmTime > twentyDaysAgo)).sort((a, b) => b.confirmTime.getTime() - a.confirmTime.getTime()))
         }
     }, [loading, user])
     return (
@@ -32,6 +35,7 @@ export default function History() {
                                         <span><span>{t('printID')}:</span> {job.id}</span>
                                         <span><span>{t('printerID')}:</span> {job.printerId}</span>
                                         <span><span>{t('copies')}:</span> {job.copies}</span>
+                                        {user && user.role === "admin" && <span><span>{t('studentID')}:</span> {job.studentId}</span>}
                                     </div>
                                     <div><span>{t('location')}:</span> {job.location}</div>
                                     <div><span>{t('confirmTime')}:</span> {job.confirmTime.toLocaleString()}</div>
@@ -39,7 +43,7 @@ export default function History() {
                                     
                                 </span>
                                 <span className={styles.button}>
-                                    {job.status !== "Completed" && <button onClick={() => {
+                                    {job.status !== "Completed" && job.status !== "Cancelled" && <button onClick={() => {
                                             printJobs.find(j => j.id === job.id)!.status = "Cancelled"
                                             displayJobs.find(j => j.id === job.id)!.status = "Cancelled"
                                             setDisplayJobs([...displayJobs])

@@ -76,5 +76,6 @@
     "balance": "Số dư",
     "insufficientBalance": "Số dư không đủ",
     "newBalance": "Số dư mới",
-    "totalPages": "Tổng số trang"
+    "totalPages": "Tổng số trang",
+    "studentID": "Mã sinh viên"
 }

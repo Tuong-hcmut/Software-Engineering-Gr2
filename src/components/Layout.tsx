@@ -1,7 +1,7 @@
 import useAuth from '../hooks/useAuth'
 import { useTranslation } from 'react-i18next'
 import logo from '../assets/logo.png'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faBell, faUserCircle} from '@fortawesome/free-solid-svg-icons';
@@ -39,8 +39,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </div>
                 <div className={styles.right}>
                     <button className={styles[language]} onClick={changeLanguage}>{language}</button>
-                    <FontAwesomeIcon icon={faBell} />
-                    <FontAwesomeIcon icon={faUserCircle} onClick={() => {console.log('clicked');setIsPopupOpen(true)}} />
+                    {user ? <>
+                        <FontAwesomeIcon icon={faBell} />
+                        <FontAwesomeIcon icon={faUserCircle} onClick={() => {console.log('clicked');setIsPopupOpen(true)}} />
+                    </>:<Link to="/login">{t('login')}</Link>}
                     {user && isPopupOpen && <SettingsPopUp onClose={() => setIsPopupOpen(false)} />}
                     {user && user.role === "user" && <div className={styles.balance}><span>{t("balance")}:</span> {balance}</div>}
                 </div>
