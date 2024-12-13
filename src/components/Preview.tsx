@@ -89,10 +89,11 @@ export default function Preview() {
     if (numPages !== null) {
       setPageNumbers(parseSelectedPages(specifications.selectedPages, numPages));
       setPageIndex(0);
-      setSpecifications({ ...specifications, numPages });
     }
   }, [specifications.selectedPages, numPages]);
-
+  useEffect(() => {
+    setSpecifications({ ...specifications, numPages: pageNumbers.length });
+  },[pageNumbers.length])
   useEffect(() => {
     const handleResize = () => {
       const { width, height } = getPageSize();

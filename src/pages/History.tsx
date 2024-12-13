@@ -38,7 +38,7 @@ export default function History() {
                                         {user && user.role === "admin" && <span><span>{t('studentID')}:</span> {job.studentId}</span>}
                                     </div>
                                     <div><span>{t('location')}:</span> {job.location}</div>
-                                    <div><span>{t('confirmTime')}:</span> {job.confirmTime.toLocaleString()}</div>
+                                    <div><span>{t('confirmationTime')}:</span> {job.confirmTime.toLocaleString()}</div>
                                     <div><span>{t('status')}:</span> {t(job.status)}</div>
                                     
                                 </span>
